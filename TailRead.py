@@ -9,13 +9,13 @@ os.listdir(path)
 files = glob.glob(path + '*.seq')
 
 ##set standard sequence
-standfile = "c:/bio/standard.txt"
+standfile = "c:/bio/data/standard.txt"
 standdata = open(standfile, 'r')
 standseq = standdata.read()
 standtxtseq = standseq.replace("\n","")
 
 ##prepare output list of results
-finalresults = [['name','sequence', '3 end', 'tail sequence', 'tail length']]
+finalresults = [['name','sequence', '3 end', 'tail sequence', 'tail length', '#A', '#C', '#G', '#T']]
 
 ##for each single sequence
 for singlefile in files:
@@ -90,11 +90,19 @@ for singlefile in files:
 		else:
 			taillength = len(trimmedseq) - x
 		tailseq = trimmedseq[x:]
+		countA = len(re.findall('A',tailseq))
+		countC = len(re.findall('C',tailseq))
+		countG = len(re.findall('G',tailseq))
+		countT = len(re.findall('T',tailseq))
 	else:
 		taillength = 'error'
 		tailseq = errmsg
+		countA = 'NA'
+		countC = 'NA'
+		countG = 'NA'
+		countT = 'NA'
 
-	finalresults.append([singlefile,trimmedseq,x,tailseq,taillength])
+	finalresults.append([singlefile,trimmedseq,x,tailseq,taillength, countA, countC, countG, countT])
 
 outputfile = path + 'output.csv'
 outputwriter = open(outputfile, 'w')
