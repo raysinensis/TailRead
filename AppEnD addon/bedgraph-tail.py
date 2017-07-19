@@ -7,7 +7,7 @@ import pandas as pd
 #factb.to_csv('')
 factb=pd.read_csv('')
 
-#filter by AU content?
+#filter by AU content/stretches if needed
 def aucontent(st):
 	l=len(st)
 	if st.count('A')>l*0.5 or st.count('T')>l*0.5:
