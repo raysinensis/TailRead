@@ -1,4 +1,6 @@
 import pandas as pd
+
+#can be narrowed down to particular gene
 #file=pd.read_csv('',sep='\t')
 #f7=file[file['Tail Chromosome']=='chr7']
 #factb=f7[f7['Tail Start'].between(5525148,5532601)]
@@ -20,6 +22,7 @@ def austring(st):
 		return False
 filtered0=f0[f0.apply(lambda x: aucontent(x['Tail']), axis=1)]
 filtered2=f2[f2.apply(lambda x: aucontent(x['Tail']), axis=1)]
+
 #make bedgraph file
 he='''track type=bedGraph name="Tail Counts" graphType=bar\n'''
 with open('2-2f.bedgraph','w') as f:
